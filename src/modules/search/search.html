@@ -1,0 +1,11 @@
+<div ng-controller="SearchController as search">
+    <h1 class="mt-5">Search Results for '{{search.text}}'</h1>
+        <div class="container-fluid">
+            <div class="row flex-row mt-4 pb-4 pt-2" ng-if="search.shows.length">
+                <show-card class="col-3 col-sm-3" ng-repeat="item in search.shows"
+                     show="item.show" ng-click="search.openShow(item.show.id)"></show-card>
+            </div>
+            <h3 ng-if="!search.shows.length && search.text">No Search Results Found</h3>
+        </div>
+    </div>
+</div>
