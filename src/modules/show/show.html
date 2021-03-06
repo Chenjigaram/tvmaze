@@ -1,3 +1,48 @@
-<div class="container-fluid" ng-controller="ShowController as $ctrl">
-<show-card show="$ctrl.show"></show-card>
+<div ng-controller="ShowController as $ctrl" >
+    <div class="jumbotron cover-image" style="background-image: url({{$ctrl.show.image.medium}});">
+        <div class="conatiner">
+            <h4 class="display-5">{{$ctrl.show.name}}</h4>
+            <div ng-bind-html="$ctrl.summary"></div>
+        </div>
+    </div>
+    <div class="row p-3">
+        <div class="col-6 col-md-3 order-md-0">
+            <div class="content-wrapper d-flex flex-column bg-white box-shadow ">                    
+                <div class="row">   
+                    <h3 class="col-8 col-xl-10">Language</h3>
+                    <div class="col-12">
+                        <div class="richtext">
+                            <ul class="checkmark">
+                                <li>{{$ctrl.show.language}}</li>
+                            </ul>
+                        </div>
+                    </div>           
+                </div>
+                <div class="row">   
+                    <h3 class="col-8 col-xl-10">Ratings</h3>
+                    <div class="col-12">
+                        <div class="richtext">
+                            <ul class="checkmark">
+                                <li>{{$ctrl.show.rating.average}}/10</li>
+                            </ul>
+                        </div>
+                    </div>           
+                </div>          
+            </div>
+        </div>
+        <div class="col-6 col-md-3 order-md-1">
+            <div class="content-wrapper d-flex flex-column bg-white box-shadow ">                    
+                <div class="row">   
+                    <h3 class="col-8 col-xl-10">Generes</h3>
+                    <div class="col-12">
+                        <div class="richtext">
+                            <ul class="checkmark">
+                                <li ng-repeat="genere in $ctrl.show.genres">{{genere}}</li>
+                            </ul>
+                        </div>
+                    </div>           
+                </div>            
+            </div>
+        </div>
+    </div>
 </div>

@@ -16,7 +16,15 @@ export default class ShowService{
     }
 
     getShow(showId){
-        return this.$http.get(`${this.baseURL}/shows/${showId}?embed=cast`);
+        return this.$http.get(`${this.baseURL}/shows/${showId}`);
+    }
+
+    getCast(showId){
+        return this.$http.get(`${this.baseURL}/shows/${showId}/cast`);
+    }
+
+    getEpisodes(showId){
+        return this.$http.get(`${this.baseURL}/shows/${showId}/episodes`);
     }
 }
 

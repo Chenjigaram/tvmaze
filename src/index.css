@@ -1,0 +1,25 @@
+.bg-green{
+    background-color: #00857a;
+}
+
+.card > img {
+    height: 125px;
+    object-fit: fill;
+  }
+.no-image {
+    height:125px;
+    background-color: #ced4da;
+}
+
+.scrolling {
+    overflow-x: scroll
+}
+
+.scrolling::-webkit-scrollbar {
+    display: none;
+}
+
+.cover-image{
+    background-size: cover;
+    background-blend-mode: soft-light;
+}

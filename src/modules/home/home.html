@@ -1,12 +1,10 @@
-<div ng-controller="HomeController as home">
-    <h1 class="mt-5">Top Rated Movies By Genere</h1>
-    <div class="container" ng-repeat="genere in home.generes" ng-if="home.generes">
-        <h3 class="subtitle">{{genere}}</h3>
-        <div class="container-fluid">
-            <div class="row flex-row flex-nowrap mt-4 pb-4 pt-2" style="overflow: hidden;overflow-x: scroll">
-                <show-card class="col-3 col-sm-3" ng-repeat="show in home.allShows | showFilter:genere | limitTo: 10"
-                     show="show" ng-click="home.openShow(show.id)"></show-card>
+<div class="container-fluid" ng-controller="HomeController as home">
+    <h2 class="mt-5">Top Rated Movies By Genere</h2>
+    <div ng-repeat="genere in home.generes" ng-if="home.generes">
+        <h4 class="subtitle">{{genere}}</h4>
+            <div class="row flex-row scrolling flex-nowrap mt-4 pb-4 pt-2">
+                <show-card class="col-4 col-md-3 col-xl-2" ng-repeat="show in home.allShows | showFilter:genere | limitTo: 10"
+                     image="show.image.medium" text="show.name" ng-click="home.openShow(show.id)"></show-card>
             </div>
-        </div>
     </div>
 </div>
