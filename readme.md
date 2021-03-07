@@ -1,5 +1,7 @@
 # TVMaze App
 
+[![Build Status](https://dev.azure.com/chenjigaramnaveen/retroboard/_apis/build/status/Chenjigaram.tvmaze?branchName=master)](https://dev.azure.com/chenjigaramnaveen/retroboard/_build/latest?definitionId=16&branchName=master)
+
 Application that allows users to view a lists of TV shows based on different genres (drama, comedy, sports, etc.).
 
 * [Live App](https://tvmaze.z1.web.core.windows.net/)
@@ -31,7 +33,7 @@ $ npm start
 It will start a local server using `webpack-dev-server` which will watch, build (in-memory), and reload for you. The port will be displayed to you as `http://localhost:8080`.
 
 You will see home page as below:
-[![home](https://github.com/Chenjigaram/tvmaze/blob/master/screenshots/home.png?raw=true)](https://github.com/Chenjigaram/tvmaze/blob/master/screenshots/home.png?raw=true)
+[![home](https://github.com/Chenjigaram/tvmaze/blob/master/screenshots/shorthome.png?raw=true)](https://github.com/Chenjigaram/tvmaze/blob/master/screenshots/shorthome.png?raw=true)
 
 ### Developing
 
