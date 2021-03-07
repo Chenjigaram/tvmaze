@@ -3,8 +3,8 @@
     <div ng-repeat="genere in home.generes" ng-if="home.generes">
         <h4 class="subtitle">{{genere}}</h4>
             <div class="row flex-row scrolling flex-nowrap mt-4 pb-4 pt-2">
-                <show-card class="col-4 col-md-3 col-xl-2" ng-repeat="show in home.allShows | showFilter:genere | limitTo: 10"
-                     image="show.image.medium" text="show.name" ng-click="home.openShow(show.id)"></show-card>
+                <image-card class="col-4 col-md-3 col-xl-2" ng-repeat="show in home.allShows | showFilter:genere | limitTo: 10"
+                     image="show.image.medium" text="show.name" ng-click="home.openShow(show.id)"></image-card>
             </div>
     </div>
 </div>

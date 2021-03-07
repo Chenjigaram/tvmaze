@@ -45,8 +45,26 @@ describe('service test',()=>{
         })
     
         it('getShow',(done)=>{
-            httpBackend.expectGET(`${baseURl}/shows/1?embed=cast`).respond(dummyResponse);
+            httpBackend.expectGET(`${baseURl}/shows/1`).respond(dummyResponse);
             service.getShow("1")
+                .then((response) => {
+                    expect(response.data).toEqual(dummyResponse);
+                    done();
+                });
+            httpBackend.flush();
+        })
+        it('getCast',(done)=>{
+            httpBackend.expectGET(`${baseURl}/shows/1/cast`).respond(dummyResponse);
+            service.getCast("1")
+                .then((response) => {
+                    expect(response.data).toEqual(dummyResponse);
+                    done();
+                });
+            httpBackend.flush();
+        })
+        it('getEpisodes',(done)=>{
+            httpBackend.expectGET(`${baseURl}/shows/1/episodes`).respond(dummyResponse);
+            service.getEpisodes("1")
                 .then((response) => {
                     expect(response.data).toEqual(dummyResponse);
                     done();

@@ -1,9 +1,8 @@
 
 export default class SearchController {
 
-    constructor($scope,$location,$routeParams,ShowService){
+    constructor($location,$routeParams,ShowService){
         'ngInject';
-        this.$scope = $scope;
         this.$location = $location;
         this.text = $routeParams.text;
         this.showService = ShowService;
@@ -11,7 +10,7 @@ export default class SearchController {
     }
 
     $onInit(){
-        this.showService.searchShows(this.text).then((response)=>{
+        return this.showService.searchShows(this.text).then((response)=>{
             this.shows = response.data;
         });
     }
