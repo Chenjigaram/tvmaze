@@ -6,45 +6,46 @@ resources:
   - repo: self
 
 variables:
-  tag: '$(Build.BuildId)'
   artifactName: 'tvmazeapp'
-  repository: 'chenjigaramnaveen/tvmazeapp'
-  containerRegistry: 'dockerhub'
 
 stages:
-  - stage: Build
-    displayName: Build image
+  - stage: CICD
+    displayName: Build and Deploy
     jobs:
-      - job: Build
-        displayName: Build
+      - job: CICD
+        displayName: Build & Deploy
         pool:
-          vmImage: 'ubuntu-latest'
+          vmImage: 'windows-latest'
         steps:
           - task: NodeTool@0
             inputs:
               versionSpec: '10.x'
-            displayName: 'Install Node.js'
           - script: |
               npm install
+            displayName: 'npm install'
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '10.x'
+            displayName: 'Run test cases'
+          - script: |
               npm run test
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '10.x'
+          - script: |
               npm run build
-            displayName: 'npm install,test and build'
+            displayName: 'npm build package'
           - task: CopyFiles@2
             inputs:
               contents: 'dist/**'
               targetFolder: $(Build.ArtifactStagingDirectory)
-          - task: PublishBuildArtifacts@1
-            inputs: 
-              pathtoPublish: $(build.artifactstagingdirectory)
-          - task: Docker@2
+          - task: AzureFileCopy@4
             inputs:
-              containerRegistry: 'dockerhub'
-              repository: $(repository)
-              command: 'buildAndPush'
-              Dockerfile: '**/Dockerfile'
-              tags: |
-                $(tag)
-                latest
+              SourcePath: 'dist/**'
+              azureSubscription: 'Pay-As-You-Go (331a493d-9fb2-4ba8-9852-0fa43ef4fa76)'
+              Destination: 'AzureBlob'
+              storage: 'tvmaze'
+              ContainerName: '$web'
           - task: PublishPipelineArtifact@1
             inputs:
               targetPath: $(System.DefaultWorkingDirectory)

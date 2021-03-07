@@ -8,7 +8,9 @@ export default class ShowController {
         this.showService = ShowService;
         this.showFilterService = ShowFilterService;
         this.$sce = $sce;
-        
+        this.show = undefined;
+        this.cast = [];
+        this.episodes = [];
     }
 
     $onInit(){

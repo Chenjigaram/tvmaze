@@ -6,58 +6,57 @@
         </div>
     </div>
     <div class="row p-3">
-        <div class="col-6 col-md-3 order-md-0">
-            <div>                    
-                <div class="row">   
-                    <h3 class="col-8 col-xl-10">Language</h3>
-                    <div class="col-12">
-                        <div class="richtext">
-                            <ul class="checkmark">
-                                <li>{{$ctrl.show.language}}</li>
-                            </ul>
-                        </div>
-                    </div>           
-                </div>
-                <div class="row">   
-                    <h3 class="col-8 col-xl-10">Ratings</h3>
-                    <div class="col-12">
-                        <div class="richtext">
-                            <ul class="checkmark">
-                                <li>{{$ctrl.show.rating.average}}/10</li>
-                            </ul>
-                        </div>
-                    </div>           
-                </div>          
+        <div class="col-6 col-md-3 order-md-0">             
+            <div class="row">   
+                <h3 class="col-8 col-xl-10">Language</h3>
+                <div class="col-12">
+                    <div class="richtext">
+                        <ul class="checkmark">
+                            <li>{{$ctrl.show.language}}</li>
+                        </ul>
+                    </div>
+                </div>           
             </div>
+            <div class="row" ng-if="$ctrl.show.rating.average">   
+                <h3 class="col-8 col-xl-10">Ratings</h3>
+                <div class="col-12">
+                    <div class="richtext">
+                        <ul class="checkmark">
+                            <li>{{$ctrl.show.rating.average}}/10</li>
+                        </ul>
+                    </div>
+                </div>           
+            </div>          
         </div>
-        <div class="col-6 col-md-3 order-md-1">
-            <div>                    
-                <div class="row">   
-                    <h3 class="col-8 col-xl-10">Generes</h3>
-                    <div class="col-12">
-                        <div class="richtext">
-                            <ul class="checkmark">
-                                <li ng-repeat="genere in $ctrl.show.genres">{{genere}}</li>
-                            </ul>
-                        </div>
-                    </div>           
-                </div>            
-            </div>
+        <div class="col-6 col-md-3 order-md-1" ng-if="$ctrl.show.genres.length">                 
+            <div class="row">   
+                <h3 class="col-8 col-xl-10">Generes</h3>
+                <div class="col-12">
+                    <div class="richtext">
+                        <ul class="checkmark">
+                            <li ng-repeat="genere in $ctrl.show.genres">{{genere}}</li>
+                        </ul>
+                    </div>
+                </div>           
+            </div>            
         </div>
     </div>
     <div class="container-fluid">
-        <h2 class="mt-2">Cast</h2>
-        <div class="row flex-row scrolling flex-nowrap mt-4 pb-4 pt-2">
-            <image-card class="col-3 col-md-2" ng-repeat="cast in $ctrl.cast"
-                image="cast.character.image.medium" text="cast.character.name"></image-card>
-        </div>
-        
-        <h2 class="mt-2">Seasons</h2>
-        <div ng-repeat="season in $ctrl.seasons">
-            <h3 class="mt-2">Season {{season}}</h3>
+        <div ng-if="$ctrl.cast.length">
+            <h2 class="mt-2">Cast</h2>
             <div class="row flex-row scrolling flex-nowrap mt-4 pb-4 pt-2">
-                <image-card class="col-5 col-md-3 col-xl-3" ng-repeat="episode in $ctrl.episodes | seasonFilter:season"
-                    image="episode.image.medium" text="episode.name"></image-card>
+                <image-card class="col-3 col-md-2" ng-repeat="cast in $ctrl.cast"
+                    image="cast.character.image.medium" text="cast.character.name"></image-card>
+            </div>
+        </div>
+        <div ng-if="$ctrl.seasons.length">
+            <h2 class="mt-2">Seasons</h2>
+            <div ng-repeat="season in $ctrl.seasons">
+                <h3 class="mt-2">Season {{season}}</h3>
+                <div class="row flex-row scrolling flex-nowrap mt-4 pb-4 pt-2">
+                    <image-card class="col-5 col-md-3 col-xl-3" ng-repeat="episode in $ctrl.episodes | seasonFilter:season"
+                        image="episode.image.medium" text="episode.name"></image-card>
+                </div>
             </div>
         </div>
     </div>
